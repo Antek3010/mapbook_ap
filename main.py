@@ -1,8 +1,8 @@
 from utils.controller import get_user_info, add_user
 from utils.model import users
 
-def main():
 
+def main():
     while True:
         print("============MENU============")
         print("0 - zamknij aplikacje")
@@ -18,13 +18,6 @@ def main():
         if choice == "1":
             get_user_info(users)
         if choice == "2": add_user(users)
-
-
-
-
-
-    get_user_info(users)
-
 
 
 if __name__ == '__main__':
