@@ -1,4 +1,4 @@
-from utils.controller import get_user_info
+from utils.controller import get_user_info, add_user
 from utils.model import users
 
 def main():
@@ -17,6 +17,7 @@ def main():
             break
         if choice == "1":
             get_user_info(users)
+        if choice == "2": add_user(users)
 
 
 
