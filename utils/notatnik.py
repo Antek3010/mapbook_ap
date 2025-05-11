@@ -1,12 +1,15 @@
-moja_lista_na_sok=[]
-print(moja_lista_na_sok)
+users=[
+    {"name":"Antek","location":"Zwoleń","posts":500},
+]
 
-def add_user(users_data: list)-> None:
 
-    new_name=input('podaj imię nowego użytkownika: ')
-    new_location=input('podaj lokalizację nowego użytkownika: ')
-    new_posts=int(input('podaj liczbę postów nowego użytkownika '))
-    users_data.append({"name": new_name , "location": new_location,"posts": new_posts})
+def remove_user(users_data: list)->None:
+    uzytkownik_do_usuniecia=input('podaj użytkownika do usuniecia: ')
 
-add_user(moja_lista_na_sok)
-print(moja_lista_na_sok)
+    for user in users_data:
+
+        if user['name'] == uzytkownik_do_usuniecia:
+            users_data.remove(user)
+
+
+print(users)
