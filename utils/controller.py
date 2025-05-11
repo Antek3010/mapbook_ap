@@ -1,6 +1,9 @@
+
 def get_user_info(users_data: list)->None:
+
     for user in users_data:
         print(f"Twój znajomy {user['name']}, z miejscowości: {user['location']} opublikował {user['posts']} postów")
+
 
 
 def add_user(users_data: list)-> None:
@@ -24,4 +27,5 @@ def update_user(users_data: list)->None:
             user['name']=input('podaj nowe imie uzytkownika: ')
             user['location']=input('podaj nową lokalizacje uzytkownika: ')
             user['posts']=int(input('podaj nową liczbe postów: '))
+
 

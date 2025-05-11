@@ -1,8 +1,8 @@
 from utils.controller import get_user_info, add_user, remove_user, update_user
 from utils.model import users
 
-def main():
 
+def main():
     while True:
         print("============MENU============")
         print("0 - zamknij aplikacje")
