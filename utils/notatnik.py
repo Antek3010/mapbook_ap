@@ -1,16 +1,37 @@
 users=[
-    {"name":"Antek","location":"Zwoleń","posts":500},
+    {"name":"Antek","location":"Lublin","posts":500,},
+    {"name":"Michał","location":"Krasnystaw","posts":200,},
+    {"name":"Ksavier","location":"Wrocław","posts":100,},
+    {"name":"Damian","location":"Kraków","posts":300,},
+
 ]
-def update_user(users_data: list)->None:
 
-    uzytkownik_do_edycji = input('podaj użytkownika do edycji: ')
+import folium
+
+import requests
+from bs4 import BeautifulSoup
+
+#https://pl.wikipedia.org/wiki/Przybys%C5%82awice_(wojew%C3%B3dztwo_lubelskie)
+
+def get_coordinates(city:str)->list:
+
+    url=f'https://pl.wikipedia.org/wiki/{city}'
+    response = requests.get(url).text
+    response_html = BeautifulSoup(response, 'html.parser')
+    longitude=float(response_html.select('.longitude')[1].text. replace(',','.'))
+    latitude=float(response_html.select('.latitude')[1].text. replace(',','.'))
+    return [latitude,longitude]
+
+
+def get_map(users_data:list)->None:
+    map = folium.Map(location=(52.23, 21.00), zoom_start=6)
     for user in users_data:
-        if user['name'] == uzytkownik_do_edycji:
-            user['name']=input('podaj nowe imie uzytkownika: ')
-            user['location']=input('podaj nową lokalizacje uzytkownika: ')
-            user['posts']=int(input('podaj nową liczbe postów: '))
+        coordinates = get_coordinates(user['location'])
 
+        folium.Marker(
+            location=(coordinates[0],coordinates[1]),
+            popup=f"Twój znajomy {user['name']}, <br/> miejscowość: {user['location']} <br/> opublikował {user['posts']} postów").add_to(
+            map)
+    map.save('mapa.html')
 
-update_user(users)
-
-print(users)
+get_map(users)
